@@ -12,3 +12,7 @@ export const reqUpdata =(user) => ajax('/update',user,'POST');
 export const reqUser = () => ajax('/user',{},'GET');
 //获取用户列表
 export const reqUserList = (type) => ajax('/userlist',{type},'GET');
+//获取消息列表
+export const reqChatMsgList = () => ajax('/msglist',{},'GET')
+//修改指定消息为已读
+export const reqReadMsg = (from) => ajax('/reading',{from},'POST')

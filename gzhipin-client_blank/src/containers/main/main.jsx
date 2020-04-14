@@ -67,7 +67,7 @@ class Main extends Component{
             return <Redirect to='/login'></Redirect>
         }
         // 如果有，读取redux中的user状态
-        const {user} = this.props;
+        const {user,unReadCount} = this.props;
         // 如果user有_id没有,返回null(不做任何显示)
         if(!user._id){
             return null;//分发了新的状态之后会进行渲染
@@ -104,13 +104,13 @@ class Main extends Component{
                     <Route path='/chat/:userid' component={Chat}></Route>
                     <Route component={NotFound}></Route>
                 </Switch>
-                {currentNav ? <NavFooter navList = {navList}></NavFooter> : null}
+                {currentNav ? <NavFooter navList = {navList} unReadCount={unReadCount}></NavFooter> : null}
             </div>
         )
     }
 }
 
-export default connect(state=>({user:state.user}),{getUser})(Main)
+export default connect(state=>({user:state.user , unReadCount:state.chat.unReadCount}),{getUser})(Main)
 
 /*
 实现自动登录

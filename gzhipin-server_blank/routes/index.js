@@ -22,6 +22,7 @@ router.post('/register',function(req,res){
         res.cookie('userid',user._id,{maxAge:1000*60*60*24*7});
         res.send({code:0,data:{_id:user._id,username,type}});
       })
+      
     }
   })
 })
@@ -89,12 +90,12 @@ router.post('/update',function(req,res){
    // 查询得到所有user信息: key为user的_id, val为name和header组成的user对象
    UserModel.find(function(err, userDoce){
      const users = {}//对象容器
-    //  userDoce.forEach(doc => {
-    //    users[doc._id] = {username: doc.username, header: doc.header}
-    //  })
-    const users = userDoce.reduce((users,user)=>{
-      users[user._id] = {username:user.username,header:user.header}
-    },{})
+     userDoce.forEach(doc => {
+       users[doc._id] = {username: doc.username, header: doc.header}
+     })
+    /*const userDoces = userDoce.reduce((userss,user)=>{
+      userss[user._id] = {username:user.username,header:user.header}
+    },{})*/
      /*
       参数1：查询条件
       参数2：过滤条件
